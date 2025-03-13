@@ -6,16 +6,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class MainApp extends Application {
+public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
-        // Load the FXML file for the main layout
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/main.fxml"));
-
-        // Set up the scene and stage
-        Scene scene = new Scene(root, 800, 600);
+        Parent root = FXMLLoader.load(getClass().getResource("/com/visualsemester/gui/main.fxml"));
         primaryStage.setTitle("Visual Semester");
-        primaryStage.setScene(scene);
+        primaryStage.setScene(new Scene(root, 500, 400));
         primaryStage.show();
     }
 

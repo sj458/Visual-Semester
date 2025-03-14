@@ -1,1 +1,5 @@
-/target/
+# Ignore the SQLite database file
+tasks.db
+
+# Ignore Maven build output
+target/

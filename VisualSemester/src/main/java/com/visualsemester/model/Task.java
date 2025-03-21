@@ -29,9 +29,24 @@ public class Task {
     public LocalDate getDueDate() {
         return dueDate;
     }
+    
 
-    @Override
-    public String toString() {
-        return "Task: " + name + " | Due: " + dueDate;
-    }
+    public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setDueDate(LocalDate dueDate) {
+		this.dueDate = dueDate;
+	}
+
+	@Override
+	public String toString() {
+		return "Task [id=" + id + ", name=" + name + ", dueDate=" + dueDate + "]";
+	}
+
+	
 }

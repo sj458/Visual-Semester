@@ -70,4 +70,39 @@ public class DatabaseHandler {
             System.out.println("Error deleting task: " + e.getMessage());
         }
     }
+  //update a task in the database
+    public void updateTask(int taskId) {
+    	//Scanner scanner = new Scanner(System.in); used in testing
+    	//System.out.println("enter new task name:");
+    	String newName = "";//scanner.nextLine(); connect to edit button
+    	//System.out.println("Enter new due date (YYYY-MM-DD");
+    	String dueDateInput = ""; //scanner.nextLine();connect to edit button
+    	
+    	LocalDate newDueDate = null;
+    	try {
+    		newDueDate = LocalDate.parse(dueDateInput);
+    	} catch(Exception e) {
+    		System.out.println("Invalid date format.");
+    	}
+    	String sql = "Update tasks Set name = ?, dueDate = ? WHERE id =?";
+    	
+    	try(Connection conn = DriverManager.getConnection(DB_URL);
+    		PreparedStatement pstmt = conn.prepareStatement(sql)){
+    		pstmt.setString(1, newName);
+    		pstmt.setString(2, newDueDate.toString());
+    		pstmt.setInt(3, taskId);
+    		
+    		int rowsUpdated = pstmt.executeUpdate();
+    		if (rowsUpdated > 0) {
+    			System.out.println("Task updated successfully.");
+    		} else {
+    			System.out.println("Task not found with ID " + taskId);
+    		}
+    	}catch(SQLException e) {
+    		System.out.println("Error updating task:" + e.getMessage());
+    		
+    	}
+    	//scanner.close();
+    }
+    
 }

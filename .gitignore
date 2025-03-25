@@ -1,0 +1,13 @@
+# Database
+VisualSemester/tasks.db
+
+# Maven/Eclipse build files
+VisualSemester/target/
+VisualSemester/bin/
+VisualSemester/.classpath
+VisualSemester/.project
+VisualSemester/.settings/
+
+# System files
+.DS_Store
+Thumbs.db

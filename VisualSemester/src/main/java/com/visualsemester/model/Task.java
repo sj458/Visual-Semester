@@ -3,35 +3,39 @@ package com.visualsemester.model;
 import java.time.LocalDate;
 
 public class Task {
-    private int id; // Unique identifier for the task
-    private String name;
-    private LocalDate dueDate;
+	// Primary key from database
+	private int id;
+	private String name;
+	private LocalDate dueDate;
 
-    public Task(String name, LocalDate dueDate) {
-        this.name = name;
-        this.dueDate = dueDate;
-    }
+	// Constructor for new tasks (no ID yet)
+	public Task(String name, LocalDate dueDate) {
+		this.name = name;
+		this.dueDate = dueDate;
+	}
 
-    public Task(int id, String name, LocalDate dueDate) {
-        this.id = id;
-        this.name = name;
-        this.dueDate = dueDate;
-    }
+	// Constructor for existing tasks (with ID)
+	public Task(int id, String name, LocalDate dueDate) {
+		this.id = id;
+		this.name = name;
+		this.dueDate = dueDate;
+	}
 
-    public int getId() {
-        return id;
-    }
+	// Getters
+	public int getId() {
+		return id;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public LocalDate getDueDate() {
-        return dueDate;
-    }
-    
+	public LocalDate getDueDate() {
+		return dueDate;
+	}
 
-    public void setId(int id) {
+	// Setters
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -45,8 +49,6 @@ public class Task {
 
 	@Override
 	public String toString() {
-		return "Task [id=" + id + ", name=" + name + ", dueDate=" + dueDate + "]";
+		return String.format("Task [id=%d, name=%s, dueDate=%s]", id, name, dueDate);
 	}
-
-	
 }

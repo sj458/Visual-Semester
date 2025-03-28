@@ -11,7 +11,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/com/visualsemester/gui/main.fxml"));
         primaryStage.setTitle("Visual Semester");
-        primaryStage.setScene(new Scene(root, 500, 400));
+        primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
 

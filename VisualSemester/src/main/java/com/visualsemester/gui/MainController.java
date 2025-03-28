@@ -1,15 +1,21 @@
 package com.visualsemester.gui;
 
+import java.io.IOException;
+import java.time.LocalDate;
+
 import com.visualsemester.manager.TaskManager;
 import com.visualsemester.model.Task;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-
-import java.time.LocalDate;
+import javafx.stage.Stage;
 
 public class MainController {
     @FXML
@@ -49,5 +55,16 @@ public class MainController {
             taskManager.deleteTask(tasks.indexOf(selectedTask));
             tasks.remove(selectedTask); // Remove the task from the table
         }
+    }
+    
+    @FXML
+    public void handleEditTask() throws IOException {
+    	Task selectedTask = taskTable.getSelectionModel().getSelectedItem();
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/visualsemester/gui/task-editor.fxml"));
+    	Parent root = loader.load();
+    	Stage stage = (Stage) taskTable.getScene().getWindow();
+    	stage.setTitle("Task Editor");
+    	stage.setScene(new Scene(root));
+    	
     }
 }

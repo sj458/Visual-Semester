@@ -1,54 +1,53 @@
+// TaskEditController.java
 package com.visualsemester.gui;
 
 import java.io.IOException;
-
+import java.time.LocalDate;
 import com.visualsemester.manager.TaskManager;
 import com.visualsemester.model.Task;
-
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class TaskEditController {
-	private Task task;
-	private TaskManager manager;
-	@FXML
-	private TextField taskNameField;
-    @FXML
-    private DatePicker dueDatePicker;
+    private Task task;
+    private TaskManager taskManager;
+    private MainController mainController;
     
+    @FXML private TextField taskNameField;
+    @FXML private DatePicker dueDatePicker;
     
-    public void initialize(Task task) {
-    	manager = new TaskManager();
-    	this.task = task;
-    	taskNameField.setText(task.getName());
-    	dueDatePicker.setValue(task.getDueDate());
+    public void initialize(Task task, TaskManager taskManager, MainController mainController) {
+        this.task = task;
+        this.taskManager = taskManager;
+        this.mainController = mainController;
+        taskNameField.setText(task.getName());
+        dueDatePicker.setValue(task.getDueDate());
     }
     
     @FXML
-    public void handleBack() throws IOException {
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/visualsemester/gui/main.fxml"));
-    	Parent root = loader.load();
-    	Stage stage = (Stage) taskNameField.getScene().getWindow();
-    	stage.setTitle("Visual Semesterr");
-    	stage.setScene(new Scene(root));
+    public void handleBack() {
+        // Close just the edit window
+        Stage stage = (Stage) taskNameField.getScene().getWindow();
+        stage.close();
     }
     
     @FXML
     public void handleSaveEdits() {
-    	//TO-DO confirmation screen
-    	manager.updateTask(task, taskNameField.getText(), dueDatePicker.getValue());
+        String newName = taskNameField.getText();
+        LocalDate newDueDate = dueDatePicker.getValue();
+        
+        if (newName != null && !newName.isEmpty() && newDueDate != null) {
+            taskManager.updateTask(task, newName, newDueDate);
+            mainController.updateTaskTable(); // Notify main controller to refresh
+            handleBack(); // Close the edit window
+        }
     }
     
     @FXML
     public void handleUndoChanges() {
-    	//TO-DO confirmation screen
-    	taskNameField.setText(task.getName());
-    	dueDatePicker.setValue(task.getDueDate());
-    	manager.updateTask(task, task.getName(), task.getDueDate());
+        taskNameField.setText(task.getName());
+        dueDatePicker.setValue(task.getDueDate());
     }
 }

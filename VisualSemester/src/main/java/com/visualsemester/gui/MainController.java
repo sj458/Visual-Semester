@@ -1,11 +1,10 @@
+// MainController.java
 package com.visualsemester.gui;
 
 import java.io.IOException;
 import java.time.LocalDate;
-
 import com.visualsemester.manager.TaskManager;
 import com.visualsemester.model.Task;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -18,18 +17,20 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class MainController {
-    @FXML
-    private TableView<Task> taskTable;
-    @FXML
-    private TextField taskNameField;
-    @FXML
-    private DatePicker dueDatePicker;
+    @FXML private TableView<Task> taskTable;
+    @FXML private TextField taskNameField;
+    @FXML private DatePicker dueDatePicker;
 
     private TaskManager taskManager;
     private ObservableList<Task> tasks;
 
     public void initialize() {
         taskManager = new TaskManager();
+        refreshTasks();
+    }
+
+    // Add this method to refresh the task list
+    private void refreshTasks() {
         tasks = FXCollections.observableArrayList(taskManager.getTasks());
         taskTable.setItems(tasks);
     }
@@ -42,7 +43,7 @@ public class MainController {
         if (name != null && !name.isEmpty() && dueDate != null) {
             Task task = new Task(name, dueDate);
             taskManager.addTask(task);
-            tasks.add(task); // Add the task to the table
+            refreshTasks(); // Refresh after adding
             taskNameField.clear();
             dueDatePicker.setValue(null);
         }
@@ -52,19 +53,30 @@ public class MainController {
     private void handleDeleteTask() {
         Task selectedTask = taskTable.getSelectionModel().getSelectedItem();
         if (selectedTask != null) {
-            taskManager.deleteTask(tasks.indexOf(selectedTask));
-            tasks.remove(selectedTask); // Remove the task from the table
+            taskManager.deleteTask(selectedTask.getId());
+            refreshTasks(); // Refresh after deleting
         }
     }
     
     @FXML
     public void handleEditTask() throws IOException {
-    	Task selectedTask = taskTable.getSelectionModel().getSelectedItem();
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/visualsemester/gui/task-editor.fxml"));
-    	Parent root = loader.load();
-    	Stage stage = (Stage) taskTable.getScene().getWindow();
-    	stage.setTitle("Task Editor");
-    	stage.setScene(new Scene(root));
-    	
+        Task selectedTask = taskTable.getSelectionModel().getSelectedItem();
+        if (selectedTask != null) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/visualsemester/gui/task-editor.fxml"));
+            Parent root = loader.load();
+            
+            TaskEditController editController = loader.getController();
+            editController.initialize(selectedTask, taskManager, this); // Pass MainController reference
+            
+            Stage stage = new Stage(); // Create new stage instead of replacing main window
+            stage.setTitle("Edit Task");
+            stage.setScene(new Scene(root));
+            stage.show();
+        }
+    }
+
+    // Add this method to be called from TaskEditController
+    public void updateTaskTable() {
+        refreshTasks();
     }
 }

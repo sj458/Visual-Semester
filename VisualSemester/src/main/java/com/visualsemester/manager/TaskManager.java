@@ -42,11 +42,14 @@ public class TaskManager {
 	}
 
 	public boolean updateTask(Task task, String newName, LocalDate newDueDate) {
-		boolean success = dbHandler.updateTask(task.getId(), newName, newDueDate);
-		if (success) {
-			loadTasksFromDatabase();
-		}
-		return success;
+	    boolean success = dbHandler.updateTask(task.getId(), newName, newDueDate);
+	    if (success) {
+	        task.setName(newName);
+	        task.setDueDate(newDueDate);
+	        loadTasksFromDatabase(); // Refresh from database
+	        return true;
+	    }
+	    return false;
 	}
 
 	public Task getTaskById(int id) {

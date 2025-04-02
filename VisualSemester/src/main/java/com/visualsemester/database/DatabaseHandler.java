@@ -70,19 +70,17 @@ public class DatabaseHandler {
 
 	// Update a task in the database
 	public boolean updateTask(int id, String newName, LocalDate newDueDate) {
-		String sql = "UPDATE tasks SET name = ?, dueDate = ? WHERE id = ?";
-
-		try (Connection conn = DriverManager.getConnection(DB_URL);
-				PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-			pstmt.setString(1, newName);
-			pstmt.setString(2, newDueDate.toString());
-			pstmt.setInt(3, id);
-
-			return pstmt.executeUpdate() > 0;
-		} catch (SQLException e) {
-			System.err.println("Error updating task: " + e.getMessage());
-			return false;
-		}
+	    String sql = "UPDATE tasks SET name = ?, dueDate = ? WHERE id = ?";
+	    try (Connection conn = DriverManager.getConnection(DB_URL);
+	         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+	        
+	        pstmt.setString(1, newName);
+	        pstmt.setString(2, newDueDate.toString());
+	        pstmt.setInt(3, id);
+	        return pstmt.executeUpdate() > 0;
+	    } catch (SQLException e) {
+	        System.err.println("Error updating task: " + e.getMessage());
+	        return false;
+	    }
 	}
 }

@@ -1,0 +1,287 @@
+/* Table Styles */
+.table-view {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #e0e0e0;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-padding: 5px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 5, 0, 0, 1);
+}
+
+/* Column headers */
+.table-view .column-header {
+    -fx-background-color: #4a90e2;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-border-color: #3a7bc8;
+    -fx-font-size: 14px;
+}
+
+.table-view .table-cell {
+    -fx-font-size: 13px;
+    -fx-text-fill: #333333; 
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 5 10 5 10; 
+}
+
+.table-view .table-cell:reminder-column {
+    -fx-text-fill: #4a90e2; 
+}
+
+/* Row styling */
+.table-row-cell {
+    -fx-border-color: #f0f0f0;
+    -fx-cell-size: 35px;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #fafafa;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #e3f2fd;
+}
+
+/* Task Type Colors */
+.assignment {
+    -fx-background-color: #ffd8a8;
+    -fx-text-fill: #2c3e50;
+}
+
+.quiz {
+    -fx-background-color: #b5e6b5;
+    -fx-text-fill: #2c3e50;
+}
+
+.test {
+    -fx-background-color: #ffb3ba;
+    -fx-text-fill: #2c3e50;
+}
+
+/* Form Controls */
+.text-field, .date-picker {
+    -fx-background-color: white;
+    -fx-border-color: #d0d0d0;
+    -fx-border-radius: 3px;
+    -fx-padding: 5px;
+    -fx-font-size: 14px;
+}
+/* Style for Type column cells */
+.type-column .table-cell {
+    -fx-alignment: CENTER;
+    -fx-font-weight: bold;
+    -fx-padding: 5px;
+    -fx-border-radius: 3px;
+    -fx-background-radius: 3px;
+}
+
+/* Style for Task Name column */
+.name-column .table-cell {
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 0 10 0 10;
+}
+
+/* Style for Due Date column */
+.date-column .table-cell {
+    -fx-alignment: CENTER;
+    -fx-padding: 0 10 0 10;
+}
+
+/* Style for Reminder column */
+.reminder-column .table-cell {
+    -fx-alignment: CENTER;
+    -fx-padding: 0 10 0 10;
+}
+
+.button {
+    -fx-background-color: #4a90e2;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-border-radius: 3px;
+    -fx-padding: 5px 10px;
+    -fx-font-size: 14px;
+}
+
+.button:hover {
+    -fx-background-color: #3a7bc8;
+}
+
+/* AM/PM Toggle Button */
+.am-pm-button {
+    -fx-pref-width: 50px;
+    -fx-font-size: 14px;
+    -fx-pref-height: 30px;
+    -fx-background-color: #f0f0f0;
+    -fx-border-color: #d0d0d0;
+    -fx-border-radius: 3px;
+    -fx-text-fill: #333333;
+}
+
+.am-pm-button:hover {
+    -fx-background-color: #e0e0e0;
+}
+
+.am-pm-button:pressed {
+    -fx-background-color: #d0d0d0;
+}
+
+/* Due Date Indicators */
+.due-soon {
+    -fx-background-color: #fff3cd;
+}
+
+.overdue {
+    -fx-background-color: #f8d7da;
+}
+
+.completed {
+    -fx-background-color: #d4edda;
+}
+
+/* Edit Window Styles */
+.edit-window {
+    -fx-background-color: #f5f7fa;
+    -fx-padding: 20px;
+    -fx-spacing: 10px;
+}
+
+.edit-label {
+    -fx-font-weight: bold;
+    -fx-min-width: 80px;
+}
+
+/* Hover Effects */
+.table-row-cell:filled:hover {
+    -fx-background-color: #f0f5ff;
+    -fx-cursor: hand;
+}
+
+.button:pressed {
+    -fx-background-color: #2a6fc9;
+}
+
+/* Text Styling */
+.label {
+    -fx-text-fill: #333333;
+}
+
+.title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+    -fx-padding: 10px;
+}
+
+.button-panel {
+    -fx-spacing: 20px;
+    -fx-padding: 20px 0 0 0;
+}
+
+/* Time Selection Specific Styles */
+.time-separator {
+    -fx-padding: 0 2px 0 2px;
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333;
+}
+
+/* ComboBox Styles */
+#taskTypeComboBox {
+    -fx-pref-width: 150px;
+    -fx-font-size: 14px;
+    -fx-pref-height: 30px;
+    -fx-background-color: white;
+    -fx-border-color: #4a90e2;
+    -fx-border-width: 1.5px;
+    -fx-border-radius: 3px;
+    -fx-effect: dropshadow(three-pass-box, rgba(74,144,226,0.2), 5, 0, 0, 1);
+}
+
+#reminderHourCombo, #reminderMinuteCombo {
+    -fx-pref-width: 60px;
+    -fx-font-size: 14px;
+    -fx-pref-height: 30px;
+    -fx-background-color: white;
+    -fx-border-color: #d0d0d0;
+    -fx-border-radius: 3px;
+}
+
+.combo-box .list-cell {
+    -fx-alignment: CENTER;
+    -fx-padding: 5px;
+    -fx-background-color: white;
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: white;
+    -fx-border-color: #d0d0d0;
+    -fx-border-radius: 3px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 1);
+}
+
+.combo-box-popup .list-cell {
+    -fx-padding: 8px 10px;
+    -fx-background-color: white;
+}
+
+.combo-box-popup .list-cell:filled:hover {
+    -fx-background-color: #f0f5ff;
+    -fx-text-fill: #2c3e50;
+}
+
+.combo-box-popup .list-cell:filled:selected {
+    -fx-background-color: #4a90e2;
+    -fx-text-fill: white;
+}
+
+/* Reminder Section Container */
+#reminderTimeContainer {
+    -fx-padding: 5px 0;
+    -fx-spacing: 5px;
+    -fx-alignment: CENTER_LEFT;
+}
+
+/* Dropdown Sizing */
+#taskTypeComboBox .list-view {
+    -fx-pref-width: 150px;
+    -fx-pref-height: -1; 
+    -fx-max-height: 200px; 
+}
+
+.combo-box-popup .list-cell {
+    -fx-padding: 8px 10px;
+    -fx-background-color: white;
+    -fx-wrap-text: true;
+}
+
+#reminderHourCombo .list-view, 
+#reminderMinuteCombo .list-view {
+    -fx-pref-width: 80px;
+    -fx-pref-height: 150px;
+}
+
+#reminderColumn {
+    -fx-alignment: CENTER;
+}
+
+/* Style for the reminder text */
+.reminder-text {
+    -fx-font-size: 13px;
+    -fx-text-fill: #4a90e2;
+}
+
+/* Styling for class column */
+.class-column .table-cell {
+    -fx-alignment: CENTER;
+    -fx-font-size: 13px;
+    -fx-text-fill: #333333;
+    -fx-padding: 5px;
+}
+
+/* Style for class ComboBox */
+#classComboBox, #editClassComboBox {
+    -fx-pref-width: 120px;
+    -fx-font-size: 14px;
+    -fx-background-color: white;
+    -fx-border-color: #d0d0d0;
+    -fx-border-radius: 3px;
+}

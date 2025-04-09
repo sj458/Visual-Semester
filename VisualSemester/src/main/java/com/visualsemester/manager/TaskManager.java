@@ -2,7 +2,9 @@ package com.visualsemester.manager;
 
 import com.visualsemester.database.DatabaseHandler;
 import com.visualsemester.model.Task;
+import com.visualsemester.model.Task.TaskType;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.*;
 
 public class TaskManager {
@@ -27,29 +29,35 @@ public class TaskManager {
 
 	public void addTask(Task task) {
 		dbHandler.addTask(task);
-		// Refresh from DB to get generated ID
 		loadTasksFromDatabase();
 	}
 
-	public boolean deleteTask(int index) {
-		if (index >= 0 && index < tasks.size()) {
-			Task task = tasks.get(index);
-			dbHandler.deleteTask(task.getId());
+	public boolean deleteTask(int id) {
+		dbHandler.deleteTask(id);
+		loadTasksFromDatabase();
+		return true;
+	}
+
+	public boolean updateTask(int id, String newName, LocalDate newDueDate, TaskType newType, String newClassName,
+			boolean hasReminder, LocalDateTime reminderTime) {
+		boolean success = dbHandler.updateTask(id, newName, newDueDate, newType, newClassName, hasReminder,
+				reminderTime);
+		if (success) {
 			loadTasksFromDatabase();
 			return true;
 		}
 		return false;
 	}
 
-	public boolean updateTask(Task task, String newName, LocalDate newDueDate) {
-	    boolean success = dbHandler.updateTask(task.getId(), newName, newDueDate);
-	    if (success) {
-	        task.setName(newName);
-	        task.setDueDate(newDueDate);
-	        loadTasksFromDatabase(); // Refresh from database
-	        return true;
-	    }
-	    return false;
+	public boolean updateTaskWithReminder(Task task, String newName, LocalDate newDueDate, TaskType newType,
+			String newClassName, boolean hasReminder, LocalDateTime reminderTime) {
+		boolean success = dbHandler.updateTask(task.getId(), newName, newDueDate, newType, newClassName, hasReminder,
+				reminderTime);
+		if (success) {
+			loadTasksFromDatabase();
+			return true;
+		}
+		return false;
 	}
 
 	public Task getTaskById(int id) {

@@ -9,6 +9,6 @@ public class AlertHelper {
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
-        alert.showAndWait();
+        alert.show(); 
     }
 }

@@ -61,7 +61,7 @@ public class MainController {
     
     @FXML
     public void initialize() {
-        taskManager = new TaskManager();
+    	taskManager = TaskManager.getInstance();  
         
         // Initialize columns
         nameColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
@@ -233,7 +233,7 @@ public class MainController {
             Parent root = loader.load();
 
             TaskEditController editController = loader.getController();
-            editController.setTaskData(selectedTask, taskManager, this);
+            editController.setTaskData(selectedTask, TaskManager.getInstance(), this);
 
             Stage stage = new Stage();
             stage.setTitle("Edit Task");

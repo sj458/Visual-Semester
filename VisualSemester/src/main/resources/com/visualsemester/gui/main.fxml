@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -15,75 +21,82 @@
 <?import javafx.collections.FXCollections?>
 <?import java.lang.String?>
 
-<VBox xmlns="http://javafx.com/javafx/8" 
-      xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.visualsemester.gui.MainController"
-      stylesheets="@/com/visualsemester/gui/styles.css"
-      spacing="10">
+<VBox spacing="10" stylesheets="@/com/visualsemester/gui/styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.visualsemester.gui.MainController">
       
     <padding>
-        <Insets top="10" right="10" bottom="10" left="10"/>
+        <Insets bottom="10" left="10" right="10" top="10" />
     </padding>
-
-    <TableView fx:id="taskTable">
-        <columns>
-            <TableColumn fx:id="nameColumn" text="Task Name" prefWidth="200">
-                <cellValueFactory>
-                    <PropertyValueFactory property="name" />
-                </cellValueFactory>
-            </TableColumn>
-            <TableColumn fx:id="classColumn" text="Class" prefWidth="120">
-                <cellValueFactory>
-                    <PropertyValueFactory property="className" />
-                </cellValueFactory>
-            </TableColumn>
-            <TableColumn fx:id="typeColumn" text="Type" prefWidth="100">
-                <cellValueFactory>
-                    <PropertyValueFactory property="type" />
-                </cellValueFactory>
-            </TableColumn>
-            <TableColumn fx:id="dateColumn" text="Due Date" prefWidth="120">
-                <cellValueFactory>
-                    <PropertyValueFactory property="dueDate" />
-                </cellValueFactory>
-            </TableColumn>
-            <TableColumn fx:id="reminderColumn" text="Reminder" prefWidth="180">
-                <cellValueFactory>
-                    <PropertyValueFactory property="hasReminder" />
-                </cellValueFactory>
-            </TableColumn>
-        </columns>
-    </TableView>
-
-    <VBox spacing="10">
-        <HBox spacing="10">
-            <TextField fx:id="taskNameField" promptText="Task Name" prefWidth="200" />
-            <ComboBox fx:id="classComboBox" promptText="Class" prefWidth="120"/>
-            <DatePicker fx:id="dueDatePicker" promptText="Due Date" />
-            <ComboBox fx:id="taskTypeComboBox" promptText="Task Type" prefWidth="100">
-                <items>
-                    <FXCollections fx:factory="observableArrayList">
-                        <String fx:value="ASSIGNMENT"/>
-                        <String fx:value="QUIZ"/>
-                        <String fx:value="TEST"/>
-                    </FXCollections>
-                </items>
-            </ComboBox>
-            <CheckBox fx:id="reminderCheckbox" text="Reminder?" />
-        </HBox>
-        
-        <HBox fx:id="reminderTimeContainer" spacing="5" visible="false">
-            <DatePicker fx:id="reminderDatePicker" promptText="Reminder Date"/>
-            <ComboBox fx:id="reminderHourCombo" promptText="Hour" prefWidth="60"/>
-            <Label text=":" styleClass="time-separator"/>
-            <ComboBox fx:id="reminderMinuteCombo" promptText="Min" prefWidth="60"/>
-            <Button fx:id="toggleAmPmButton" text="AM" styleClass="am-pm-button"/>
-        </HBox>
-    </VBox>
-
-    <HBox spacing="10">
-        <Button text="Add Task" onAction="#handleAddTask" styleClass="button" />
-        <Button text="Delete Task" onAction="#handleDeleteTask" styleClass="button" />
-        <Button text="Edit Task" onAction="#handleEditTask" styleClass="button" />
-    </HBox>
+   <children>
+   
+       <TableView fx:id="taskTable">
+           <columns>
+               <TableColumn fx:id="nameColumn" prefWidth="200" text="Task Name">
+                   <cellValueFactory>
+                       <PropertyValueFactory property="name" />
+                   </cellValueFactory>
+               </TableColumn>
+               <TableColumn fx:id="classColumn" prefWidth="120" text="Class">
+                   <cellValueFactory>
+                       <PropertyValueFactory property="className" />
+                   </cellValueFactory>
+               </TableColumn>
+               <TableColumn fx:id="typeColumn" prefWidth="100" text="Type">
+                   <cellValueFactory>
+                       <PropertyValueFactory property="type" />
+                   </cellValueFactory>
+               </TableColumn>
+               <TableColumn fx:id="dateColumn" prefWidth="120" text="Due Date">
+                   <cellValueFactory>
+                       <PropertyValueFactory property="dueDate" />
+                   </cellValueFactory>
+               </TableColumn>
+               <TableColumn fx:id="reminderColumn" prefWidth="180" text="Reminder">
+                   <cellValueFactory>
+                       <PropertyValueFactory property="hasReminder" />
+                   </cellValueFactory>
+               </TableColumn>
+           </columns>
+       </TableView>
+   
+       <VBox spacing="10">
+      <children>
+              <HBox spacing="10">
+                 <children>
+                     <TextField fx:id="taskNameField" prefWidth="200" promptText="Task Name" />
+                     <ComboBox fx:id="classComboBox" prefWidth="120" promptText="Class" />
+                     <DatePicker fx:id="dueDatePicker" promptText="Due Date" />
+                     <ComboBox fx:id="taskTypeComboBox" prefWidth="100" promptText="Task Type">
+                         <items>
+                             <FXCollections fx:factory="observableArrayList">
+                                 <String fx:value="ASSIGNMENT" />
+                                 <String fx:value="QUIZ" />
+                                 <String fx:value="TEST" />
+                             </FXCollections>
+                         </items>
+                     </ComboBox>
+                     <CheckBox fx:id="reminderCheckbox" text="Reminder?" />
+                 </children>
+              </HBox>
+              
+              <HBox fx:id="reminderTimeContainer" spacing="5" visible="false">
+                 <children>
+                     <DatePicker fx:id="reminderDatePicker" promptText="Reminder Date" />
+                     <ComboBox fx:id="reminderHourCombo" prefWidth="60" promptText="Hour" />
+                     <Label styleClass="time-separator" text=":" />
+                     <ComboBox fx:id="reminderMinuteCombo" prefWidth="60" promptText="Min" />
+                     <Button fx:id="toggleAmPmButton" styleClass="am-pm-button" text="AM" />
+                 </children>
+              </HBox>
+      </children>
+       </VBox>
+   
+       <HBox spacing="10">
+      <children>
+              <Button onAction="#handleAddTask" styleClass="button" text="Add Task" />
+              <Button onAction="#handleDeleteTask" styleClass="button" text="Delete Task" />
+              <Button onAction="#handleEditTask" styleClass="button" text="Edit Task" />
+       		  <Button onAction="#handleCalendar" styleClass="button" text="Back to Calendar" />
+      </children>
+       </HBox>
+   </children>
 </VBox>

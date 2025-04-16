@@ -243,6 +243,19 @@ public class MainController {
             showAlert("ERROR", "Please select a task");
         }
     }
+    
+    @FXML
+    public void handleCalendar() throws IOException {
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/visualsemester/gui/Calendar.fxml"));
+        Parent root = loader.load();
+
+
+        Stage stage = (Stage)taskTable.getScene().getWindow();
+        stage.setTitle("Edit Task");
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
 
     public void updateTaskTable() {
         loadTasks();

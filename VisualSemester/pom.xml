@@ -30,6 +30,12 @@
 			<version>5.9.3</version>
 			<scope>test</scope>
 		</dependency>
+		<!-- FXTrayIcon for notifications -->
+        <dependency>
+            <groupId>com.dustinredmond.fxtrayicon</groupId>
+            <artifactId>FXTrayIcon</artifactId>
+            <version>3.1.2</version>
+        </dependency>
 	</dependencies>
 	<build>
 		<plugins>

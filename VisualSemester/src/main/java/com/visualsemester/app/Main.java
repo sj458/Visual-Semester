@@ -20,7 +20,7 @@ public class Main extends Application {
         this.reminderScheduler = new ReminderScheduler(taskManager, primaryStage);
         taskManager.setReminderScheduler(reminderScheduler);
         
-        Parent root = FXMLLoader.load(getClass().getResource("/com/visualsemester/gui/main.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/com/visualsemester/gui/Calendar.fxml"));
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("/com/visualsemester/gui/styles.css").toExternalForm());
         
